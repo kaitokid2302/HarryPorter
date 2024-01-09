@@ -3,6 +3,7 @@
   <img src="/image-4.png" width="200" />
   <img src="/image-5.png" width="200" /> 
   <img src="/image-6.png" width="200" />
+  <img src="/image-7.png" width="200" />
 </p>
 
 # Desktop
