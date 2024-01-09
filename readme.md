@@ -1,3 +1,15 @@
+# Desktop
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+![Alt text](image-3.png)
+
+
+# Mobile
+<p float="left">
+  <img src="/image-4.png" width="100" />
+  <img src="/image-5.png" width="100" /> 
+  <img src="/image-6.png" width="100" />
+</p>
 # Introduction (Введение)  
 1. Purpose (Цель)
 Mục đích của SRS là mô tả hành các, các ràng buộc, yêu cầu cụ thể của app, nhằm mục đích tạo ra 1 app trực quan về các nhân vật trong Series phim/truyện Harry Potter.  
