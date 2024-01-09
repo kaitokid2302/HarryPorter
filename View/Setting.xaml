@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarryPorter.Setting">
+    <ScrollView Scrolled="ScrollView_Scrolled" x:Name="Scroll">
+        <StackLayout BindableLayout.ItemsSource="{Binding Questions}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10" Padding="10" CornerRadius="10">
+                        <StackLayout>
+                            <Label Text="{Binding QuestionText}" FontAttributes="Bold" FontSize="Medium"/>
+                            <Button Text="{Binding Option1}" Clicked="Button_Clicked" ClassId="1" BackgroundColor="LightSlateGray"/>
+                            <Button Text="{Binding Option2}" Clicked="Button_Clicked" ClassId="2" BackgroundColor="DimGray"/>
+                            <Button Text="{Binding Option3}" Clicked="Button_Clicked" ClassId="3" BackgroundColor="SlateGray"/>
+                            <Button Text="{Binding Option4}" Clicked="Button_Clicked" ClassId="4" BackgroundColor="DarkSlateGray"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

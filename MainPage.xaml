@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarryPorter.MainPage"
+             xmlns:local="clr-namespace:HarryPorter"
+             SelectedTabColor="Blue"
+             UnselectedTabColor="Black"
+             >
+    <local:Home IconImageSource="home.png" x:Name="Home"></local:Home>
+    <local:House IconImageSource="house.png" x:Name="House"></local:House>
+    <local:Setting IconImageSource="owl.png" x:Name="Setting"></local:Setting>
+    
+    
+</TabbedPage>

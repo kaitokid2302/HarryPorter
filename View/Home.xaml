@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HarryPorter.Home"
+
+             >
+    <ScrollView>
+    <VerticalStackLayout Spacing="40">
+       
+        <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Image Source="star.png"></Image>
+            <Label Text="Top Wizard" FontSize="25" FontAttributes="Bold"></Label>
+        </VerticalStackLayout>
+       
+        <CollectionView ItemsSource="{Binding AllStudents}" HeightRequest="160">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical" Spacing="5">
+                        <Frame Padding="0" WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" BorderColor="HotPink" >
+                            <ImageButton Source = "{Binding image}" Clicked="ImageButton_OnClicked" Aspect="AspectFill"></ImageButton>
+                        </Frame>
+                        <Label Text="{Binding name}" VerticalOptions="Center" FontAttributes="Bold" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        
+        <VerticalStackLayout Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Image Source="starstaff.png" HorizontalOptions="Center"></Image>
+            <Grid HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                <Image Source="teacher.png" HorizontalOptions="Center"/>
+                <Label Text="Hogwarts Staff" FontSize="25" FontAttributes="Bold" HorizontalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+       
+        <CollectionView ItemsSource="{Binding AllStaff}" HeightRequest="160">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical" Spacing="5">
+                        <Frame Padding="0" WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" BorderColor="HotPink" >
+                            <ImageButton Source = "{Binding image}" Clicked="ImageButton_OnClicked" Aspect="AspectFill"></ImageButton>
+                        </Frame>
+                        <Label Text="{Binding name}" VerticalOptions="Center" FontAttributes="Bold" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

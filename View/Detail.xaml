@@ -1,0 +1,100 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HarryPorter.Converters"
+             x:Class="HarryPorter.DetailPage"
+             Padding="10"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringToColorConverter x:Key="StringToColorConverter"/>
+            <converters:BoolToSymbolConverter x:Key="BoolToSymbolConverter"/>
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <Frame BackgroundColor="RosyBrown"><Label Text="{Binding name}" 
+                                      FontSize="Large" 
+                                      HorizontalOptions="Center" 
+                                      /></Frame>
+            
+
+            <Image Source="{Binding image}"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   MaximumHeightRequest="250"
+                   MaximumWidthRequest="200"/>
+
+            <Grid Margin="0,10,0,0"
+                  RowSpacing="10" 
+                  ColumnSpacing="10"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  ColumnDefinitions="*, *"
+                  HorizontalOptions="Center"
+                  >
+                  
+                <Label Grid.Row="0" Grid.Column="0" Text="Species" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding species}" FontSize = "22"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" Text="Gender" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding gender}" FontSize = "22"/>
+                
+                <Label Grid.Row="2" Grid.Column="0" Text="House" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding house}" FontSize = "22"/>
+                
+                <Label Grid.Row="3" Grid.Column="0" Text="Date of Birth" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding dateOfBirth}" FontSize = "22"/>
+                
+                <Label Grid.Row="4" Grid.Column="0" Text="Year of Birth" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding yearOfBirth}" FontSize = "22"/>
+                
+                <Label Grid.Row="5" Grid.Column="0" Text="Ancestry" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding ancestry}" FontSize = "22"/>
+                
+                <Label Grid.Row="6" Grid.Column="0" Text="Eye Colour" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="6" Grid.Column="1" 
+                       Text="{Binding eyeColour}" FontSize = "22"
+                       TextColor="{Binding eyeColour, Converter={StaticResource StringToColorConverter}}"/>
+                
+                <Label Grid.Row="7" Grid.Column="0" Text="Hair Colour" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="7" Grid.Column="1" 
+                       Text="{Binding hairColour}" FontSize = "22"
+                       TextColor="{Binding hairColour, Converter={StaticResource StringToColorConverter}}"/>
+                
+                <Label Grid.Row="8" Grid.Column="0" Text="Wand" FontAttributes="Bold" FontSize="20"/>
+                <Grid Grid.Row="8" Grid.Column="1" 
+                      RowDefinitions="Auto,Auto" 
+                      ColumnDefinitions="*,*,*"
+                      ColumnSpacing="25"
+                      HorizontalOptions="FillAndExpand">
+
+                    <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto,Auto">
+                        <Image Source="wandcolor.png" Aspect="AspectFit" HeightRequest="30"/>
+                        <Label Grid.Row="1" Text="{Binding wand.wood}" FontSize="16" HorizontalOptions="Center" MaxLines="2" TextColor="Red" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto">
+                        <Image Source="sun.png" Aspect="AspectFit" HeightRequest="30"/>
+                        <Label Grid.Row="1" Text="{Binding wand.core}" FontSize="16" HorizontalOptions="Center" MaxLines="2" FontAttributes="Bold" TextColor="DeepPink"/>
+                    </Grid>
+
+                    <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="Auto,Auto">
+                        <Image Source="ruler.png" Aspect="AspectFit" HeightRequest="30"/>
+                        <Label Grid.Row="1" Text="{Binding wand.length}" FontSize="16" HorizontalOptions="Center" MaxLines="2" FontAttributes="Bold" TextColor="Purple"/>
+                    </Grid>
+                </Grid>
+                
+                <Label Grid.Row="9" Grid.Column="0" Text="Patronus" FontAttributes = "Bold" FontSize = "20"/>
+                <Label Grid.Row="9" Grid.Column="1" Text="{Binding patronus}" FontSize = "22"/>
+                
+                <Label Grid.Row="10" Grid.Column="0" Text="Hogwarts Student" FontSize = "20" FontAttributes="Bold"/>
+                <Label Grid.Row="10" Grid.Column="1" 
+                       Text="{Binding hogwartsStudent, Converter={StaticResource BoolToSymbolConverter}}" FontSize = "22"
+                       TextColor="{Binding hogwartsStudent, Converter={StaticResource BoolToColorConverter}}"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,114 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+        <OutputType>Exe</OutputType>
+        <RootNamespace>HarryPorter</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <!-- Display name -->
+        <ApplicationTitle>HarryPorter</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.harryporter</ApplicationId>
+        <ApplicationIdGuid>DCD8074E-C341-44EC-AB45-6A7D589806E4</ApplicationIdGuid>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+      <CreatePackage>false</CreatePackage>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*svg" />
+    <MauiImage Update="Resources\Images\questionmark.svg" BaseSize="50,50" />
+	<MauiImage Update="Resources\Images\wandmono.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\wandcolor.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\sun.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\star.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\search.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\ruler.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\male.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\house.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\home.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\gear.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\female.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\teacher.svg" BaseSize="30,30" />
+	<MauiImage Update="Resources\Images\starstaff.svg" BaseSize="35,35" />
+    <MauiImage Update="Resources\Images\owl.svg" BaseSize="30,30" />
+ 
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+        <PackageReference Include="Syncfusion.Maui.DataGrid" Version="24.1.44" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <BundleResource Include="Resources\Images\house.svg" />
+      <BundleResource Include="Resources\Images\starstaff.svg" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Resources\Images\star-medal-favorite-award-prize-svgrepo-com.svg" />
+    </ItemGroup>
+    <ItemGroup>
+      <MauiXaml Update="View\Home.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="View\Detail.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="View\House.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="View\Setting.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="View\Home.xaml.cs">
+        <DependentUpon>Home.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Detail.xaml.cs">
+        <DependentUpon>Detail.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\House.xaml.cs">
+        <DependentUpon>House.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="View\Setting.xaml.cs">
+        <DependentUpon>Setting.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+</Project>
