@@ -2,7 +2,9 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HarryPorter.House">
+             x:Class="HarryPorter.House"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+             >
     <ScrollView>
         <StackLayout>
         <Grid Margin="10">
@@ -14,6 +16,11 @@
                 <Entry x:Name="textSearch" Completed="textSearch_Completed"  Grid.Column="0" />
                 <ImageButton Source="search.png" Clicked="ImageButton_Clicked" Grid.Column="1"/>
             </Grid>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="←" Clicked="Button_OnClickedPrevious" />
+                <Label Text="{Binding PageNumber}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Button Text="→" Clicked="Button_OnClickedNext" />
+            </HorizontalStackLayout>
             <CollectionView ItemsSource="{Binding AllCharactersList}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="4" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="10"/>
@@ -22,13 +29,25 @@
                     <DataTemplate>
                         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                             <Frame Padding="0" WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" BorderColor="HotPink">
-                                <ImageButton Source="{Binding image}" Aspect="AspectFill" Clicked="ImageButton_Clicked_1"></ImageButton>
+                                <ffimageloading:CachedImage Aspect="AspectFill" 
+                                                            Source="{Binding image}" 
+                                                            CacheDuration="24000" 
+                                                            DownsampleToViewSize="true" 
+                                                            RetryCount="3"
+                                                            LoadingPlaceholder="questionmark.png"
+                                                            CacheType="All">
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ImageButton_Clicked_1" NumberOfTapsRequired="1" />
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                    
+                                </ffimageloading:CachedImage>
                             </Frame>
                             <Label Text="{Binding name}" HorizontalOptions="Center" FontAttributes="Bold"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            
            </StackLayout>
     </ScrollView>
 </ContentPage>

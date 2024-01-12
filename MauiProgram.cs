@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
+using FFImageLoading.Maui;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace HarryPorter;
@@ -10,6 +12,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseFFImageLoading()
             
             .ConfigureFonts(fonts =>
             {

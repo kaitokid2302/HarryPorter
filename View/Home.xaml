@@ -20,7 +20,12 @@
                 <DataTemplate>
                     <StackLayout Orientation="Vertical" Spacing="5">
                         <Frame Padding="0" WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" BorderColor="HotPink" >
-                            <ImageButton Source = "{Binding image}" Clicked="ImageButton_OnClicked" Aspect="AspectFill"></ImageButton>
+                            <ImageButton  Clicked="ImageButton_OnClicked" Aspect="AspectFill">
+                                <ImageButton.Source>
+                                    <UriImageSource Uri="{Binding image}" CacheValidity="10:00:00:00"/>
+
+                                </ImageButton.Source>
+                            </ImageButton>
                         </Frame>
                         <Label Text="{Binding name}" VerticalOptions="Center" FontAttributes="Bold" />
                     </StackLayout>
@@ -47,7 +52,12 @@
                 <DataTemplate>
                     <StackLayout Orientation="Vertical" Spacing="5">
                         <Frame Padding="0" WidthRequest="100" HeightRequest="100" CornerRadius="50" IsClippedToBounds="True" BorderColor="HotPink" >
-                            <ImageButton Source = "{Binding image}" Clicked="ImageButton_OnClicked" Aspect="AspectFill"></ImageButton>
+                            <ImageButton Clicked="ImageButton_OnClicked" Aspect="AspectFill">
+                                <ImageButton.Source>
+                                    <UriImageSource Uri="{Binding image}" CacheValidity="10:00:00:00"/>
+
+                                </ImageButton.Source>
+                            </ImageButton>
                         </Frame>
                         <Label Text="{Binding name}" VerticalOptions="Center" FontAttributes="Bold" />
                     </StackLayout>

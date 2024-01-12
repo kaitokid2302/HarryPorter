@@ -9,29 +9,44 @@ namespace HarryPorter;
 [AddINotifyPropertyChangedInterface]
 public class HRViewModel : INotifyPropertyChanged
 {
+    private int take = 16;
     public List<Question> Questions { get; set; } = new List<Question>()
-{
-    new Question("What is the eye color of Harry Potter?", "Green", "Blue", "Brown", "Grey", 1),
-    new Question("Which house does Harry Potter belong to?", "Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw", 1),
-    new Question("Who is the headmaster of Hogwarts during Harry's first year?", "Albus Dumbledore", "Severus Snape", "Minerva McGonagall", "Rubeus Hagrid", 1),
-    new Question("What is the Patronus of Harry Potter?", "Stag", "Otter", "Doe", "Phoenix", 1),
-    new Question("Who teaches Potions class in Harry's first year?", "Severus Snape", "Horace Slughorn", "Gilderoy Lockhart", "Remus Lupin", 1),
-    new Question("What is the name of Harry Potter's owl?", "Hedwig", "Errol", "Crookshanks", "Scabbers", 1),
-    new Question("What position does Harry play in Quidditch?", "Seeker", "Chaser", "Beater", "Keeper", 1),
-    new Question("What is the last Horcrux to be destroyed?", "Nagini", "Harry Potter", "The Diadem of Ravenclaw", "The Cup of Hufflepuff", 1),
-    new Question("Who destroyed the final Horcrux?", "Neville Longbottom", "Harry Potter", "Ron Weasley", "Hermione Granger", 1),
-    new Question("What spell is used to open doors?", "Alohomora", "Expelliarmus", "Wingardium Leviosa", "Lumos", 1),
-    new Question("What is the name of Ron's rat?", "Scabbers", "Hedwig", "Crookshanks", "Fang", 1),
-    new Question("Who is the ghost of Gryffindor house?", "Nearly Headless Nick", "The Grey Lady", "The Bloody Baron", "Moaning Myrtle", 1),
-    new Question("What is the effect of the Polyjuice Potion?", "Changes appearance", "Heals wounds", "Makes invisible", "Induces sleep", 1),
-    new Question("What is the core of Harry Potter's wand?", "Phoenix feather", "Dragon heartstring", "Unicorn hair", "Veela hair", 1),
-    new Question("Who is the Half-Blood Prince?", "Severus Snape", "Harry Potter", "Tom Riddle", "Albus Dumbledore", 1),
-    new Question("What is the name of Hermione's cat?", "Crookshanks", "Hedwig", "Fang", "Scabbers", 1),
-    new Question("What does the Marauder's Map show?", "Location of people", "Secret passages", "Future events", "Spell casting", 1),
-    new Question("What house is Luna Lovegood in?", "Ravenclaw", "Gryffindor", "Slytherin", "Hufflepuff", 1),
-    new Question("What is the name of Dumbledore's phoenix?", "Fawkes", "Buckbeak", "Nagini", "Aragog", 1)
-};
+    {
+        new Question("What is the eye color of Harry Potter?", "Green", "Blue", "Brown", "Grey", 1),
+        new Question("Which house does Harry Potter belong to?", "Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw",
+            1),
+        new Question("Who is the headmaster of Hogwarts during Harry's first year?", "Albus Dumbledore",
+            "Severus Snape", "Minerva McGonagall", "Rubeus Hagrid", 1),
+        new Question("What is the Patronus of Harry Potter?", "Stag", "Otter", "Doe", "Phoenix", 1),
+        new Question("Who teaches Potions class in Harry's first year?", "Severus Snape", "Horace Slughorn",
+            "Gilderoy Lockhart", "Remus Lupin", 1),
+        new Question("What is the name of Harry Potter's owl?", "Hedwig", "Errol", "Crookshanks", "Scabbers", 1),
+        new Question("What position does Harry play in Quidditch?", "Seeker", "Chaser", "Beater", "Keeper", 1),
+        new Question("What is the last Horcrux to be destroyed?", "Nagini", "Harry Potter", "The Diadem of Ravenclaw",
+            "The Cup of Hufflepuff", 1),
+        new Question("Who destroyed the final Horcrux?", "Neville Longbottom", "Harry Potter", "Ron Weasley",
+            "Hermione Granger", 1),
+        new Question("What spell is used to open doors?", "Alohomora", "Expelliarmus", "Wingardium Leviosa", "Lumos",
+            1),
+        new Question("What is the name of Ron's rat?", "Scabbers", "Hedwig", "Crookshanks", "Fang", 1),
+        new Question("Who is the ghost of Gryffindor house?", "Nearly Headless Nick", "The Grey Lady",
+            "The Bloody Baron", "Moaning Myrtle", 1),
+        new Question("What is the effect of the Polyjuice Potion?", "Changes appearance", "Heals wounds",
+            "Makes invisible", "Induces sleep", 1),
+        new Question("What is the core of Harry Potter's wand?", "Phoenix feather", "Dragon heartstring",
+            "Unicorn hair", "Veela hair", 1),
+        new Question("Who is the Half-Blood Prince?", "Severus Snape", "Harry Potter", "Tom Riddle", "Albus Dumbledore",
+            1),
+        new Question("What is the name of Hermione's cat?", "Crookshanks", "Hedwig", "Fang", "Scabbers", 1),
+        new Question("What does the Marauder's Map show?", "Location of people", "Secret passages", "Future events",
+            "Spell casting", 1),
+        new Question("What house is Luna Lovegood in?", "Ravenclaw", "Gryffindor", "Slytherin", "Hufflepuff", 1),
+        new Question("What is the name of Dumbledore's phoenix?", "Fawkes", "Buckbeak", "Nagini", "Aragog", 1)
+    };
+
     private static HRViewModel instance = null;
+    public ObservableCollection<Root> PageCharacters { get; set; } = new ObservableCollection<Root>();
+
     public static HRViewModel Instance
     {
         get
@@ -40,12 +55,14 @@ public class HRViewModel : INotifyPropertyChanged
             {
                 instance = new HRViewModel();
             }
+
             return instance;
         }
     }
+
     public ObservableCollection<Root> AllStudents { get; set; } = new ObservableCollection<Root>();
     public Root SelectedCharacter { get; set; } = new Root();
-    
+
     public ObservableCollection<Root> AllStaff { get; set; } = new ObservableCollection<Root>();
     public ObservableCollection<Root> AllCharacters { get; set; } = new ObservableCollection<Root>();
     private ObservableCollection<Root> _allCharactersList;
@@ -99,10 +116,12 @@ public class HRViewModel : INotifyPropertyChanged
             foreach (var character in characters)
             {
                 // if character image is null, then it will be: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/450px-Orange_question_mark.svg.png?20220903225041"
-                if(character.image == null || character.image == "")
+                if (character.image == null || character.image == "")
                 {
-                    character.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/450px-Orange_question_mark.svg.png?20220903225041";
+                    character.image =
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/450px-Orange_question_mark.svg.png?20220903225041";
                 }
+
                 AllCharacters.Add(character);
             }
 
@@ -136,9 +155,12 @@ public class HRViewModel : INotifyPropertyChanged
                     c.species = "Unknown";
                 }
             }
+
             AllStudents = new ObservableCollection<Root>(AllCharacters.Where(x => x.hogwartsStudent == true));
             AllStaff = new ObservableCollection<Root>(AllCharacters.Where(x => x.hogwartsStaff == true));
-            AllCharactersList = new ObservableCollection<Root>(AllCharacters);
+            PageCharacters = new ObservableCollection<Root>(AllCharacters);
+            AllCharactersList = new ObservableCollection<Root>(PageCharacters.Take(take));
+
         }
         else
         {
@@ -146,12 +168,15 @@ public class HRViewModel : INotifyPropertyChanged
             var characters = JsonSerializer.Deserialize<List<Root>>(json);
             foreach (var character in characters)
             {
-                if(character.image == null || character.image == "")
+                if (character.image == null || character.image == "")
                 {
-                    character.image = "questionmark.png";
+                    character.image =
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Orange_question_mark.svg/450px-Orange_question_mark.svg.png?20220903225041";
                 }
+
                 AllCharacters.Add(character);
             }
+
             foreach (var c in AllCharacters)
             {
                 // if any attribute is null, then it will be: "Unknown"
@@ -182,23 +207,18 @@ public class HRViewModel : INotifyPropertyChanged
                     c.species = "Unknown";
                 }
             }
+
             AllStudents = new ObservableCollection<Root>(AllCharacters.Where(x => x.hogwartsStudent == true));
             AllStaff = new ObservableCollection<Root>(AllCharacters.Where(x => x.hogwartsStaff == true));
-            AllCharactersList = new ObservableCollection<Root>(AllCharacters);
-            
+            PageCharacters = new ObservableCollection<Root>(AllCharacters);
+            AllCharactersList = new ObservableCollection<Root>(PageCharacters.Take(take));
+
         }
+
         SelectedCharacter = AllStudents[0];
         // get all houses
-        foreach (var character in AllCharacters)
-        {
-            if (character.house != null && character.house != "" && !AllHouses.Contains(character.house))
-            {
-                AllHouses.Add(character.house);
-            }
-        }
-        Console.WriteLine(AllCharactersList.Count);
-        
     }
+
     public async Task Display(string textSearch)
     {
         var filteredCharacters = await Task.Run(() =>
@@ -222,7 +242,8 @@ public class HRViewModel : INotifyPropertyChanged
                     var hairColor = character.hairColour.ToLower();
                     var eyeColor = character.eyeColour.ToLower();
 
-                    if (name.Contains(textSearch) || house.Contains(textSearch) || actor.Contains(textSearch) || species.Contains(textSearch)  || hairColor.Contains(textSearch) || eyeColor.Contains(textSearch))
+                    if (name.Contains(textSearch) || house.Contains(textSearch) || actor.Contains(textSearch) ||
+                        species.Contains(textSearch) || hairColor.Contains(textSearch) || eyeColor.Contains(textSearch))
                     {
                         tempList.Add(character);
                     }
@@ -234,16 +255,46 @@ public class HRViewModel : INotifyPropertyChanged
         // clear all characters
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            AllCharactersList = new ObservableCollection<Root>(filteredCharacters);
+            PageCharacters = new ObservableCollection<Root>(filteredCharacters);
+            // 16 first characters
+            AllCharactersList = new ObservableCollection<Root>(PageCharacters.Take(16));
+            PageNumber = 1;
             // update on property changed
             OnPropertyChanged("AllCharactersList");
         });
-        
+
     }
+
     // on property changed
     public event PropertyChangedEventHandler PropertyChanged;
+
     private void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    
+    /// <summary>
+    /// create PageNumber, when set, then call UpdatePage()
+    /// </summary>
+    private int _pageNumber = 1;
+    public int PageNumber
+    {
+        get => _pageNumber;
+        set
+        {
+            if (_pageNumber != value)
+            {
+                if(value < 1) return;
+                _pageNumber = value;
+                UpdatePage();
+            }
+        }
+    }
+
+    public void UpdatePage()
+    {
+        int page = _pageNumber;
+        // from index (take*(page - 1)) -> next take characters
+        AllCharactersList = new ObservableCollection<Root>(PageCharacters.Skip(take * (page - 1)).Take(take));
     }
 }

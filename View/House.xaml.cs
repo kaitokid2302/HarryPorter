@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FFImageLoading.Maui;
 
 namespace HarryPorter;
 
@@ -33,15 +34,25 @@ public partial class House : ContentPage
 
     void ImageButton_Clicked_1(System.Object sender, System.EventArgs e)
     {
-        var imageButton = sender as ImageButton;
-        if (imageButton != null)
+        var cachedImage = sender as CachedImage; // Cast sender thành CachedImage
+        if (cachedImage != null)
         {
-            var character = imageButton.BindingContext as Root;
+            var character = cachedImage.BindingContext as Root; // Sử dụng BindingContext từ CachedImage
             if (character != null)
             {
                 HRViewModel.Instance.SelectedCharacter = character;
-                Navigation.PushAsync(new DetailPage());
+                Navigation.PushAsync(new DetailPage()); // Đảm bảo DetailPage được khởi tạo đúng
             }
         }
+    }
+
+    private void Button_OnClickedPrevious(object sender, EventArgs e)
+    {
+        myViewModel.PageNumber -= 1;
+    }
+
+    private void Button_OnClickedNext(object sender, EventArgs e)
+    {
+        myViewModel.PageNumber += 1;
     }
 }
